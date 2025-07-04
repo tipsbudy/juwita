@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Writing Topic 1</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-6 text-center shadow">
+    <h1 class="text-2xl font-bold">Writing Topic 1</h1>
+    <p class="text-sm">Menulis perkenalan diri</p>
+  </header>
+
+  <main class="container mx-auto py-8 px-4 space-y-6">
+
+    <!-- MATERI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Materi</h2>
+      <p>
+        Ketika memperkenalkan diri dalam bahasa Inggris, kamu bisa menyebutkan nama, usia, asal, hobi, dan cita-cita.  
+        Contoh kalimat:  
+        <br/>
+        <em>Hello, my name is Siti. I am twelve years old. I come from Jakarta. My hobby is drawing, and I want to be an architect.</em>
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Quiz</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. Which sentence is correct?<br/>
+          <label><input type="radio" name="q1" value="20"> My name is Andi.</label><br/>
+          <label><input type="radio" name="q1" value="0"> Name my is Andi.</label><br/>
+          <label><input type="radio" name="q1" value="0"> Andi is name my.</label>
+        </div>
+        <div>
+          2. Which one is a hobby?<br/>
+          <label><input type="radio" name="q2" value="20"> Swimming</label><br/>
+          <label><input type="radio" name="q2" value="0"> Pencil</label><br/>
+          <label><input type="radio" name="q2" value="0"> Table</label>
+        </div>
+        <div>
+          3. Which is a dream job?<br/>
+          <label><input type="radio" name="q3" value="20"> Architect</label><br/>
+          <label><input type="radio" name="q3" value="0"> Drawing</label><br/>
+          <label><input type="radio" name="q3" value="0"> Football</label>
+        </div>
+        <div>
+          4. Which city is mentioned in the example?<br/>
+          <label><input type="radio" name="q4" value="20"> Jakarta</label><br/>
+          <label><input type="radio" name="q4" value="0"> Bandung</label><br/>
+          <label><input type="radio" name="q4" value="0"> Surabaya</label>
+        </div>
+        <div>
+          5. How old is Siti?<br/>
+          <label><input type="radio" name="q5" value="20"> Twelve</label><br/>
+          <label><input type="radio" name="q5" value="0"> Ten</label><br/>
+          <label><input type="radio" name="q5" value="0"> Fifteen</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="writing.html" class="text-purple-700 hover:underline">← Kembali ke Writing</a>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 mt-8 text-sm">
+    &copy; 2025 Digital Learning Media Development
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").textContent = "✅ Selamat, kamu sudah menyelesaikan materi ini.";
+        const progress = JSON.parse(localStorage.getItem("progressWriting") || "[]");
+        if(!progress.includes("writing1")){
+          progress.push("writing1");
+          localStorage.setItem("progressWriting", JSON.stringify(progress));
+        }
+      } else {
+        document.getElementById("quizResult").textContent = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>

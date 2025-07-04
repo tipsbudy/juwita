@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Picture Description: Flower Garden</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-4 text-center shadow">
+    <h1 class="text-2xl font-bold">Picture Description: Flower Garden</h1>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 space-y-4">
+
+    <!-- GAMBAR -->
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://via.placeholder.com/600x400?text=Flower+Garden" alt="Flower Garden" class="w-full rounded mb-4">
+      <p>
+        This is a picture of a beautiful flower garden. People often visit gardens to see colorful flowers, take photos, and enjoy fresh air. Gardens are relaxing places to connect with nature.
+      </p>
+    </div>
+
+    <!-- TEORI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Describing Places in English</h2>
+      <p class="text-sm">
+        When describing a place in English, you can mention:
+        <ul class="list-disc ml-6 mt-2 space-y-1 text-sm">
+          <li>What can you see there?</li>
+          <li>What activities can people do?</li>
+          <li>How does the place make you feel?</li>
+        </ul>
+        Example: <em>Visitors enjoy walking among the colorful flowers in the garden.</em>
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Quiz: Describing a Flower Garden</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. What do people usually do in a flower garden?<br/>
+          <label><input type="radio" name="q1" value="20"> Enjoy flowers and fresh air</label><br/>
+          <label><input type="radio" name="q1" value="0"> Play football</label><br/>
+          <label><input type="radio" name="q1" value="0"> Cook food</label>
+        </div>
+        <div>
+          2. Which sentence best describes the garden?<br/>
+          <label><input type="radio" name="q2" value="20"> There are many colorful flowers</label><br/>
+          <label><input type="radio" name="q2" value="0"> There are many cars</label><br/>
+          <label><input type="radio" name="q2" value="0"> There are many buildings</label>
+        </div>
+        <div>
+          3. Why do people go to a garden?<br/>
+          <label><input type="radio" name="q3" value="20"> To relax and connect with nature</label><br/>
+          <label><input type="radio" name="q3" value="0"> To do homework</label><br/>
+          <label><input type="radio" name="q3" value="0"> To go shopping</label>
+        </div>
+        <div>
+          4. What word describes a place with many plants and flowers?<br/>
+          <label><input type="radio" name="q4" value="20"> Garden</label><br/>
+          <label><input type="radio" name="q4" value="0"> Library</label><br/>
+          <label><input type="radio" name="q4" value="0"> Hospital</label>
+        </div>
+        <div>
+          5. Which activity is common in a flower garden?<br/>
+          <label><input type="radio" name="q5" value="20"> Taking pictures</label><br/>
+          <label><input type="radio" name="q5" value="0"> Repairing machines</label><br/>
+          <label><input type="radio" name="q5" value="0"> Selling electronics</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 text-sm">&copy; 2025 Digital Learning Media Development</footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").innerHTML = "✅ Selamat, kamu selesai!";
+        const progress = JSON.parse(localStorage.getItem("pictureProgress") || "[]");
+        progress.push("flower-garden");
+        localStorage.setItem("pictureProgress", JSON.stringify(progress));
+      } else {
+        document.getElementById("quizResult").innerHTML = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>

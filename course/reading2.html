@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading Topic 2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-6 text-center shadow">
+    <h1 class="text-2xl font-bold">Reading Topic 2</h1>
+    <p class="text-sm">Latihan membaca tentang hobi</p>
+  </header>
+
+  <main class="container mx-auto py-8 px-4 space-y-6">
+
+    <!-- MATERI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Text</h2>
+      <p class="text-justify">
+        My name is Rina. I have a hobby. My hobby is cooking. I like trying new recipes, especially cakes and cookies. Every weekend, I bake with my mother. We also share the food with our neighbors. Cooking makes me happy and creative.
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Quiz</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. What is Rina's hobby?<br/>
+          <label><input type="radio" name="q1" value="20"> Cooking</label><br/>
+          <label><input type="radio" name="q1" value="0"> Singing</label><br/>
+          <label><input type="radio" name="q1" value="0"> Swimming</label>
+        </div>
+        <div>
+          2. What does Rina like to make?<br/>
+          <label><input type="radio" name="q2" value="20"> Cakes and cookies</label><br/>
+          <label><input type="radio" name="q2" value="0"> Fried rice</label><br/>
+          <label><input type="radio" name="q2" value="0"> Pizza</label>
+        </div>
+        <div>
+          3. When does Rina bake with her mother?<br/>
+          <label><input type="radio" name="q3" value="20"> Every weekend</label><br/>
+          <label><input type="radio" name="q3" value="0"> Every Monday</label><br/>
+          <label><input type="radio" name="q3" value="0"> Every Friday</label>
+        </div>
+        <div>
+          4. Who else enjoys Rina's cooking?<br/>
+          <label><input type="radio" name="q4" value="20"> Neighbors</label><br/>
+          <label><input type="radio" name="q4" value="0"> Teachers</label><br/>
+          <label><input type="radio" name="q4" value="0"> Students</label>
+        </div>
+        <div>
+          5. How does cooking make Rina feel?<br/>
+          <label><input type="radio" name="q5" value="20"> Happy and creative</label><br/>
+          <label><input type="radio" name="q5" value="0"> Tired</label><br/>
+          <label><input type="radio" name="q5" value="0"> Angry</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="reading.html" class="text-purple-700 hover:underline">← Kembali ke Reading</a>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 mt-8 text-sm">
+    &copy; 2025 Digital Learning Media Development
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").textContent = "✅ Selamat, kamu sudah menyelesaikan materi ini.";
+        const progress = JSON.parse(localStorage.getItem("progressReading") || "[]");
+        if(!progress.includes("reading2")){
+          progress.push("reading2");
+          localStorage.setItem("progressReading", JSON.stringify(progress));
+        }
+      } else {
+        document.getElementById("quizResult").textContent = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>

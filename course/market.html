@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Picture Description: Market</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-4 text-center shadow">
+    <h1 class="text-2xl font-bold">Picture Description: Market</h1>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 space-y-4">
+
+    <!-- GAMBAR -->
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://via.placeholder.com/600x400?text=Market+Picture" alt="Market" class="w-full rounded mb-4">
+      <p>
+        This is a picture of a traditional market. People come here to buy and sell various products like vegetables, fruits, fish, and meat. The market is usually crowded in the morning when everyone is shopping for their daily needs.
+      </p>
+    </div>
+
+    <!-- TEORI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Descriptive Sentences in English</h2>
+      <p class="text-sm">
+        When you describe a picture, you usually start with what you see and then give more details.  
+        In English, descriptive sentences often answer questions like:
+        <ul class="list-disc ml-6 mt-2 space-y-1 text-sm">
+          <li>What is in the picture?</li>
+          <li>What are people doing?</li>
+          <li>Where is it happening?</li>
+        </ul>
+        Example: <em>People are buying fresh vegetables in the traditional market.</em>
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Quiz: Describing a Market</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. Where do people buy vegetables and fruits?<br/>
+          <label><input type="radio" name="q1" value="20"> In the market</label><br/>
+          <label><input type="radio" name="q1" value="0"> In the bank</label><br/>
+          <label><input type="radio" name="q1" value="0"> In the office</label>
+        </div>
+        <div>
+          2. What is usually crowded in the morning?<br/>
+          <label><input type="radio" name="q2" value="20"> The market</label><br/>
+          <label><input type="radio" name="q2" value="0"> The school</label><br/>
+          <label><input type="radio" name="q2" value="0"> The hospital</label>
+        </div>
+        <div>
+          3. Which of these is NOT usually sold in a traditional market?<br/>
+          <label><input type="radio" name="q3" value="20"> Cars</label><br/>
+          <label><input type="radio" name="q3" value="0"> Vegetables</label><br/>
+          <label><input type="radio" name="q3" value="0"> Fish</label>
+        </div>
+        <div>
+          4. What are people doing in the market picture?<br/>
+          <label><input type="radio" name="q4" value="20"> Buying and selling</label><br/>
+          <label><input type="radio" name="q4" value="0"> Playing football</label><br/>
+          <label><input type="radio" name="q4" value="0"> Sleeping</label>
+        </div>
+        <div>
+          5. Which sentence describes the picture best?<br/>
+          <label><input type="radio" name="q5" value="20"> People are buying fresh products in the market.</label><br/>
+          <label><input type="radio" name="q5" value="0"> Students are studying English.</label><br/>
+          <label><input type="radio" name="q5" value="0"> Drivers are fixing cars.</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 text-sm">&copy; 2025 Digital Learning Media Development</footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").innerHTML = "✅ Selamat, kamu selesai!";
+        const progress = JSON.parse(localStorage.getItem("pictureProgress") || "[]");
+        progress.push("market");
+        localStorage.setItem("pictureProgress", JSON.stringify(progress));
+      } else {
+        document.getElementById("quizResult").innerHTML = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>

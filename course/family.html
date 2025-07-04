@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Picture Description: Family</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-4 text-center shadow">
+    <h1 class="text-2xl font-bold">Picture Description: Family</h1>
+  </header>
+
+  <main class="container mx-auto px-4 py-6 space-y-4">
+
+    <!-- GAMBAR -->
+    <div class="bg-white p-4 rounded shadow">
+      <img src="https://via.placeholder.com/600x400?text=Family+Picture" alt="Family" class="w-full rounded mb-4">
+      <p>
+        This is a picture of a family spending time together. Families often gather at home, in parks, or on vacation to enjoy quality time. They may talk, play, eat, or simply relax together.
+      </p>
+    </div>
+
+    <!-- TEORI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Describing Family Activities</h2>
+      <p class="text-sm">
+        In English, describing family activities usually includes:
+        <ul class="list-disc ml-6 mt-2 space-y-1 text-sm">
+          <li>Who is in the picture?</li>
+          <li>What are they doing together?</li>
+          <li>Where are they spending time?</li>
+        </ul>
+        Example: <em>The family is having dinner together at home.</em>
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-bold mb-2">Quiz: Describing Family</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. What do families usually do together?<br/>
+          <label><input type="radio" name="q1" value="20"> Spend quality time</label><br/>
+          <label><input type="radio" name="q1" value="0"> Work alone</label><br/>
+          <label><input type="radio" name="q1" value="0"> Fight all day</label>
+        </div>
+        <div>
+          2. Which is a good example of a family activity?<br/>
+          <label><input type="radio" name="q2" value="20"> Having dinner together</label><br/>
+          <label><input type="radio" name="q2" value="0"> Working in an office</label><br/>
+          <label><input type="radio" name="q2" value="0"> Riding a motorbike alone</label>
+        </div>
+        <div>
+          3. Where do families often gather?<br/>
+          <label><input type="radio" name="q3" value="20"> At home or parks</label><br/>
+          <label><input type="radio" name="q3" value="0"> At the hospital</label><br/>
+          <label><input type="radio" name="q3" value="0"> At a bank</label>
+        </div>
+        <div>
+          4. Which sentence describes the picture best?<br/>
+          <label><input type="radio" name="q4" value="20"> The family is enjoying their time together.</label><br/>
+          <label><input type="radio" name="q4" value="0"> Students are studying for exams.</label><br/>
+          <label><input type="radio" name="q4" value="0"> Drivers are fixing cars.</label>
+        </div>
+        <div>
+          5. Why is spending time with family important?<br/>
+          <label><input type="radio" name="q5" value="20"> It makes people closer and happier</label><br/>
+          <label><input type="radio" name="q5" value="0"> It causes stress</label><br/>
+          <label><input type="radio" name="q5" value="0"> It wastes time</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 text-sm">&copy; 2025 Digital Learning Media Development</footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").innerHTML = "✅ Selamat, kamu selesai!";
+        const progress = JSON.parse(localStorage.getItem("pictureProgress") || "[]");
+        progress.push("family");
+        localStorage.setItem("pictureProgress", JSON.stringify(progress));
+      } else {
+        document.getElementById("quizResult").innerHTML = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Writing Topic 2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-6 text-center shadow">
+    <h1 class="text-2xl font-bold">Writing Topic 2</h1>
+    <p class="text-sm">Menulis kegiatan sehari-hari</p>
+  </header>
+
+  <main class="container mx-auto py-8 px-4 space-y-6">
+
+    <!-- MATERI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Materi</h2>
+      <p>
+        Dalam bahasa Inggris, kamu bisa menceritakan rutinitas sehari-hari.  
+        Contoh kalimat:  
+        <br/>
+        <em>I wake up at six o'clock. I go to school at seven. After school, I play with my friends and do my homework in the evening.</em>
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Quiz</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. What time does the writer wake up?<br/>
+          <label><input type="radio" name="q1" value="20"> Six o'clock</label><br/>
+          <label><input type="radio" name="q1" value="0"> Seven o'clock</label><br/>
+          <label><input type="radio" name="q1" value="0"> Eight o'clock</label>
+        </div>
+        <div>
+          2. When does the writer go to school?<br/>
+          <label><input type="radio" name="q2" value="20"> At seven</label><br/>
+          <label><input type="radio" name="q2" value="0"> At eight</label><br/>
+          <label><input type="radio" name="q2" value="0"> At nine</label>
+        </div>
+        <div>
+          3. What does the writer do after school?<br/>
+          <label><input type="radio" name="q3" value="20"> Play with friends</label><br/>
+          <label><input type="radio" name="q3" value="0"> Sleep</label><br/>
+          <label><input type="radio" name="q3" value="0"> Watch TV</label>
+        </div>
+        <div>
+          4. When does the writer do homework?<br/>
+          <label><input type="radio" name="q4" value="20"> In the evening</label><br/>
+          <label><input type="radio" name="q4" value="0"> In the morning</label><br/>
+          <label><input type="radio" name="q4" value="0"> At night</label>
+        </div>
+        <div>
+          5. Who does the writer play with?<br/>
+          <label><input type="radio" name="q5" value="20"> Friends</label><br/>
+          <label><input type="radio" name="q5" value="0"> Teachers</label><br/>
+          <label><input type="radio" name="q5" value="0"> Brother</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="writing.html" class="text-purple-700 hover:underline">← Kembali ke Writing</a>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 mt-8 text-sm">
+    &copy; 2025 Digital Learning Media Development
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").textContent = "✅ Selamat, kamu sudah menyelesaikan materi ini.";
+        const progress = JSON.parse(localStorage.getItem("progressWriting") || "[]");
+        if(!progress.includes("writing2")){
+          progress.push("writing2");
+          localStorage.setItem("progressWriting", JSON.stringify(progress));
+        }
+      } else {
+        document.getElementById("quizResult").textContent = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>

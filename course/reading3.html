@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Reading Topic 3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+  <!-- HEADER -->
+  <header class="bg-purple-700 text-white py-6 text-center shadow">
+    <h1 class="text-2xl font-bold">Reading Topic 3</h1>
+    <p class="text-sm">Latihan membaca tentang hewan kesukaan</p>
+  </header>
+
+  <main class="container mx-auto py-8 px-4 space-y-6">
+
+    <!-- MATERI -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Text</h2>
+      <p class="text-justify">
+        My name is Riko. My favorite animal is a cat. I have two cats at home. Their names are Mimi and Tom. They are very cute and playful. I feed them every morning and evening. I like to play with them after doing my homework.
+      </p>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="bg-white p-4 rounded shadow">
+      <h2 class="text-xl font-semibold mb-2">Quiz</h2>
+      <form id="quiz" class="space-y-4">
+        <div>
+          1. What is Riko's favorite animal?<br/>
+          <label><input type="radio" name="q1" value="20"> Cat</label><br/>
+          <label><input type="radio" name="q1" value="0"> Dog</label><br/>
+          <label><input type="radio" name="q1" value="0"> Rabbit</label>
+        </div>
+        <div>
+          2. How many cats does Riko have?<br/>
+          <label><input type="radio" name="q2" value="20"> Two</label><br/>
+          <label><input type="radio" name="q2" value="0"> One</label><br/>
+          <label><input type="radio" name="q2" value="0"> Three</label>
+        </div>
+        <div>
+          3. What are the names of the cats?<br/>
+          <label><input type="radio" name="q3" value="20"> Mimi and Tom</label><br/>
+          <label><input type="radio" name="q3" value="0"> Lucy and Max</label><br/>
+          <label><input type="radio" name="q3" value="0"> Bella and Simba</label>
+        </div>
+        <div>
+          4. When does Riko feed his cats?<br/>
+          <label><input type="radio" name="q4" value="20"> Morning and evening</label><br/>
+          <label><input type="radio" name="q4" value="0"> Afternoon</label><br/>
+          <label><input type="radio" name="q4" value="0"> Night only</label>
+        </div>
+        <div>
+          5. What does Riko do after homework?<br/>
+          <label><input type="radio" name="q5" value="20"> Play with his cats</label><br/>
+          <label><input type="radio" name="q5" value="0"> Watch TV</label><br/>
+          <label><input type="radio" name="q5" value="0"> Go to sleep</label>
+        </div>
+        <button type="button" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-900" onclick="checkQuiz()">Submit</button>
+      </form>
+      <div id="quizResult" class="mt-4 text-green-700 font-bold"></div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="reading.html" class="text-purple-700 hover:underline">← Kembali ke Reading</a>
+    </div>
+
+  </main>
+
+  <footer class="bg-gray-200 text-center py-4 mt-8 text-sm">
+    &copy; 2025 Digital Learning Media Development
+  </footer>
+
+  <!-- SCRIPT -->
+  <script>
+    function checkQuiz(){
+      const form = document.getElementById("quiz");
+      const data = new FormData(form);
+      let score = 0;
+      for(let pair of data.entries()){
+        score += Number(pair[1]);
+      }
+      const percent = (score/100)*100;
+      if(percent >= 80){
+        document.getElementById("quizResult").textContent = "✅ Selamat, kamu sudah menyelesaikan materi ini.";
+        const progress = JSON.parse(localStorage.getItem("progressReading") || "[]");
+        if(!progress.includes("reading3")){
+          progress.push("reading3");
+          localStorage.setItem("progressReading", JSON.stringify(progress));
+        }
+      } else {
+        document.getElementById("quizResult").textContent = "❌ Skor kamu " + percent + "%. Silakan coba lagi.";
+      }
+    }
+  </script>
+
+</body>
+</html>
