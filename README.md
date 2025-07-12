@@ -1,50 +1,69 @@
-# Digital Learning Media Development (DLMD) LMS
+📘 README – Digital Learning Media Development (DLMD)
+📌 Deskripsi
+DLMD adalah platform pembelajaran digital berbasis Zoom yang didesain untuk mendukung proses belajar interaktif. Website ini menyajikan teori pembelajaran modern dan pelacakan kehadiran melalui antarmuka yang elegan dan responsif.
 
-Selamat datang di platform **Digital Learning Media Development (DLMD)**. Ini adalah proyek Learning Management System (LMS) sederhana berbasis HTML + Tailwind, yang dikembangkan untuk mendukung proses pembelajaran berbasis media digital secara interaktif.
+📂 Struktur Halaman
+File	Fungsi
+index.html	Beranda utama dengan hero slideshow dan CTA
+dashboard.html	Dasbor siswa yang menampilkan jadwal Zoom & progres kehadiran
+zoom.html	Menampilkan jadwal dan link Zoom kelas
+forum.html	Forum diskusi siswa dengan komentar dummy dan fitur balasan
+teori.html	Halaman penjelasan teori Vygotsky, Piaget, Sweller, dan Mayer
+about.html	Menjelaskan sistem, alur pembelajaran, dan fitur-fitur utama
+katalog.html	Menampilkan daftar kategori kursus seperti Picture, Reading, Writing
+materi-*.html	Halaman detail untuk tiap materi dan kuis terkait
 
-## Fitur Utama
+🎨 Teknologi yang Digunakan
+TailwindCSS: Untuk styling modern dan responsif
 
-✅ Struktur kursus berbasis:
-- Picture Description
-- Reading
-- Writing
+HTML5: Struktur utama halaman
 
-✅ Sub-kursus dengan materi dan kuis
-- Materi dalam bentuk teks sederhana
-- Kuis pilihan ganda dengan progress tracking
-- Progress tersimpan di localStorage (per device)
+Vanilla JavaScript: Slideshow, progres tracking, forum komentar
 
-✅ Fitur forum diskusi sederhana
-- Menampilkan komentar dummy
-- Bisa balas komentar (nested)
-- Efek suara & animasi muncul perlahan
+YouTube Embed: Untuk video pengantar
 
-✅ Progress Bar
-- Progress keseluruhan di katalog
-- Progress per sub kursus
-- Reset progress
+LocalStorage: Menyimpan progres kuis dan kehadiran
 
-✅ Desain
-- Responsive menggunakan TailwindCSS
-- Clean & modern
-- Typography `Inter`
-- Warna utama gradasi ungu ke biru
-- Animasi hover interaktif
+⚙️ Fitur Utama
+✅ Hero slideshow dinamis
 
-## Struktur Folder
+✅ Navbar responsif + dark mode toggle
 
-```plaintext
-index.html
-katalog.html
-picture.html
-reading.html
-writing.html
-reading1.html
-reading2.html
-reading3.html
-writing1.html
-writing2.html
-forum.html
-assets/
-  pop.mp3
-  gambar-materi/
+✅ Jadwal Zoom dengan tombol hadir otomatis
+
+✅ Forum diskusi interaktif (dummy + reply + emoji)
+
+✅ Kuis penilaian otomatis per materi
+
+✅ Progres bar belajar
+
+✅ Teori pembelajaran lengkap
+
+✅ Desain mobile-first
+
+📌 Cara Menjalankan
+Download semua file .html, gambar, dan pop.mp3
+
+Buka index.html di browser
+
+Website berjalan sepenuhnya tanpa server (static site)
+
+Progress user disimpan di browser menggunakan localStorage
+
+🧠 Teori yang Diintegrasikan
+Vygotsky: Social Constructivism → Forum & Zoom
+
+Piaget: Cognitive Constructivism → Kuis per topik
+
+Sweller: Cognitive Load → Desain ringkas, kuis bertahap
+
+Mayer: Multimedia Learning → Video, teks, gambar interaktif
+
+🚧 Catatan Pengembangan
+🔜 Tambahkan login user
+
+🔜 Integrasi database dan autentikasi
+
+🔜 Export hasil belajar ke PDF
+
+🔜 Upload tugas via web
