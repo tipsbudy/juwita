@@ -1,0 +1,40 @@
+<!-- === KUIS: Vygotsky === -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Vygotsky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white text-gray-800">
+  <main class="max-w-3xl mx-auto py-12 px-6">
+    <h2 class="text-2xl font-bold mb-6 text-purple-700">Kuis Vygotsky</h2>
+    <form id="quizForm" class="space-y-6">
+      <div>
+        <p>1. Apa itu ZPD?</p>
+        <label><input type="radio" name="q1" value="1"> Zona Pengembangan Proksimal</label><br>
+        <label><input type="radio" name="q1" value="0"> Zona Proyeksi Digital</label>
+      </div>
+      <div>
+        <p>2. Apa peran scaffolding?</p>
+        <label><input type="radio" name="q2" value="1"> Memberi dukungan belajar sementara</label><br>
+        <label><input type="radio" name="q2" value="0"> Menilai hasil belajar akhir</label>
+      </div>
+      <button type="submit" class="bg-purple-700 text-white px-4 py-2 rounded hover:bg-purple-800">Submit</button>
+    </form>
+    <div id="result" class="mt-6 font-semibold"></div>
+  </main>
+
+  <script>
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const data = new FormData(this);
+      let score = 0;
+      for (let val of data.values()) score += parseInt(val);
+      localStorage.setItem("hasilKuis", score);
+window.location.href = "hasil.html";
+    });
+  </script>
+</body>
+</html>
