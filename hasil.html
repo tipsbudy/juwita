@@ -4,18 +4,80 @@
   <meta charset="UTF-8">
   <title>Hasil Kuis</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+  </style>
 </head>
-<body class="bg-gray-50 text-gray-800">
-  <main class="max-w-xl mx-auto text-center py-20 px-4">
-    <h1 class="text-3xl font-bold text-purple-700 mb-4">Hasil Kuis Kamu</h1>
-    <p class="text-lg mb-6" id="output">Mengambil hasil...</p>
-    <a href="index.html" class="inline-block mt-4 px-6 py-3 bg-purple-700 text-white rounded hover:bg-purple-800">Kembali ke Beranda</a>
+<body class="bg-gray-100 text-gray-800">
+  <main class="max-w-4xl mx-auto py-16 px-6 text-center">
+    <h1 class="text-4xl font-bold text-purple-700 mb-6">🎉 Selamat! 🎉</h1>
+    <p class="text-lg mb-4">Skor Pilihan Ganda: <span id="score" class="font-semibold text-green-600"></span> / 5</p>
+    <h2 class="text-2xl font-semibold mt-8 text-indigo-700 mb-4">Jawaban Essay:</h2>
+    <ol class="list-decimal space-y-4 text-left max-w-3xl mx-auto text-gray-700" id="essayList"></ol>
+
+    <a href="index.html" class="mt-10 inline-block bg-purple-700 text-white px-6 py-3 rounded hover:bg-purple-800 transition">Kembali ke Beranda</a>
   </main>
 
+  <!-- Fireworks Canvas -->
+  <canvas id="fireworks"></canvas>
+
   <script>
-    const score = localStorage.getItem("hasilKuis");
-    document.getElementById("output").textContent =
-      score >= 2 ? `✅ Kamu lulus dengan skor ${score}/2!` : `❌ Skor kamu ${score}/2. Coba lagi ya!`;
+    const score = localStorage.getItem('kuisScore');
+    const essays = JSON.parse(localStorage.getItem('essayAnswers') || '[]');
+    document.getElementById('score').textContent = score;
+    const list = document.getElementById('essayList');
+    essays.forEach((ans, i) => {
+      const item = document.createElement('li');
+      item.textContent = ans || '-';
+      list.appendChild(item);
+    });
+  </script>
+
+  <script>
+    // Simple Fireworks Animation
+    const canvas = document.getElementById("fireworks");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particles = [];
+
+    function createFirework(x, y) {
+      for (let i = 0; i < 50; i++) {
+        particles.push({
+          x, y,
+          dx: (Math.random() - 0.5) * 5,
+          dy: (Math.random() - 0.5) * 5,
+          life: 100,
+          color: `hsl(${Math.random() * 360}, 100%, 60%)`
+        });
+      }
+    }
+
+    function animate() {
+      ctx.fillStyle = "rgba(0,0,0,0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+        p.x += p.dx;
+        p.y += p.dy;
+        p.life--;
+        if (p.life <= 0) particles.splice(i, 1);
+      });
+      requestAnimationFrame(animate);
+    }
+
+    setInterval(() => {
+      createFirework(
+        Math.random() * canvas.width,
+        Math.random() * canvas.height / 2
+      );
+    }, 1000);
+
+    animate();
   </script>
 </body>
 </html>
